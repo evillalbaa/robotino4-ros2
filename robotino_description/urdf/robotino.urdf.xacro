@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<robot name="robotino" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:include filename="common_properties.xacro" />
-    <xacro:include filename="robotino_body.xacro" />
-</robot>
