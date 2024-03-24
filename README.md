@@ -5,7 +5,7 @@ This repository contains three ROS 2 packages related to the Robotino robot.
 ## Included Packages:
 
 ### 1. robotino_bringup 
-This package contains a launch file to bring up the Robotino robot in Gazebo and visualize it in RViz.
+This package contains a launch file to spawn the Robotino robot in Gazebo with ros2_controller and visualize it in RViz.
 
 #### Usage Instructions:
 
@@ -13,6 +13,21 @@ To launch the robot in Gazebo and visualize it in RViz, execute the following co
 
 ```bash
 ros2 launch robotino_bringup robotino_gazebo.launch.xml
+```
+
+To launch robotino in Gazebo with ros2_controller:
+
+```bash
+ros2 launch robotino_bringup robotino_gazebo.launch.py
+```
+
+To control the robot's wheels:
+
+```bash
+ros2 topic pub /forward_velocity_controller/commands std_msgs/msg/Float64MultiArray "data:
+ - 0.5
+ - 0.5
+ - 0.5" -1
 ```
 
 ### 2. robotino_description

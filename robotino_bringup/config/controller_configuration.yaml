@@ -1,0 +1,26 @@
+# Controller manager configuration
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz
+
+    ### Controllers available
+    forward_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+### Properties of the controllers that we will use and definition of joints to use ###
+forward_velocity_controller:
+  ros__parameters:
+    joints:
+      - wheel0_joint
+      - wheel1_joint
+      - wheel2_joint
+    interface_name: velocity
+    command_interfaces:
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
+
