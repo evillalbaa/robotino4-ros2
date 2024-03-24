@@ -46,6 +46,7 @@ def generate_launch_description():
                                    '-entity', 'robot'],
                         output='screen')
 
+    '''
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
@@ -57,9 +58,9 @@ def generate_launch_description():
         package="controller_manager",
         executable="spawner",
         output="screen",
-        arguments=["forward_velocity_controller"],
+        arguments=["omnidirectional_controller"],
     )
-
+    '''
     rviz2_node = Node(
         package="rviz2",
         executable="rviz2",
@@ -68,8 +69,8 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        joint_state_broadcaster_spawner,
-        robot_controller_spawner,
+        # joint_state_broadcaster_spawner,
+        # robot_controller_spawner,
         gazebo,
         spawn_entity,
         node_robot_state_publisher,

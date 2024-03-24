@@ -63,7 +63,7 @@
   </link>
 
     <!-- ========== Wheel 0 - Joint ========== --> 
-    <joint name="wheel0_joint" type="continuous">
+    <joint name="wheel0_joint" type="fixed"> <!--<joint name="wheel0_joint" type="continuous"></joint> --> 
       <parent link="base_link"/>
       <child link="wheel0_link"/>
       <origin xyz="-0.0001 0.1825 0.059154" rpy="0 0 0"/>
@@ -96,7 +96,7 @@
   </link>
 
   <!-- ========== Wheel 1 - Joint ========== --> 
-  <joint name="wheel1_joint" type="continuous">
+  <joint name="wheel1_joint" type="fixed"> <!--<joint name="wheel1_joint" type="continuous"></joint> -->
     <parent link="base_link"/>
     <child link="wheel1_link"/>
     <origin xyz="-0.157067 -0.090625 0.059154" rpy="0 0 2.094395102393195"/>
@@ -129,7 +129,7 @@
   </link>
 
   <!-- ========== Wheel 2 - Joint ========== --> 
-  <joint name="wheel2_joint" type="continuous">
+  <joint name="wheel2_joint" type="fixed"> <!--<joint name="wheel2_joint" type="continuous"></joint> -->
     <parent link="base_link"/>
     <child link="wheel2_link"/>
     <origin xyz="0.156867 -0.090625 0.059154" rpy="0 0 -2.094395102393195"/>
@@ -137,7 +137,7 @@
   </joint> 
   <!-- ************************************************************************ -->
 
-  <!-- ROS PLANAR MOVE (X,Y,O)
+  <!-- ROS PLANAR MOVE -->
   <gazebo>
     <plugin name="gazebo_ros_planar_move" filename="libgazebo_ros_planar_move.so">
 
@@ -157,15 +157,38 @@
       <odometry_frame>odom_demo</odometry_frame>
       <robot_base_frame>base_footprint</robot_base_frame>
 
+      <!--
       <covariance_x>0.0001</covariance_x>
       <covariance_y>0.0001</covariance_y>
       <covariance_yaw>0.01</covariance_yaw>
+      -->
 
     </plugin>
   </gazebo>
-  -->
+
+  <gazebo reference="wheel1_link">
+    <material>Gazebo/Grey</material>
+    <!-- <fdir1>0 1 0"</fdir1> -->
+    <!-- <mu1>1.7</mu1> -->
+    <!-- <mu2>0.2</mu2> -->
+  </gazebo>
+
+  <gazebo reference="wheel2_link">
+      <material>Gazebo/Grey</material>
+      <!-- <fdir1>0 1 0"</fdir1> -->
+      <!-- <mu1>1.7</mu1> -->
+      <!-- <mu2>0.2</mu2> -->
+  </gazebo>
+
+  <gazebo reference="wheel3_link">
+      <material>Gazebo/Grey</material>
+      <!-- <fdir1>0 1 0"</fdir1> -->
+      <!-- <mu1>1.7</mu1> -->
+      <!-- <mu2>0.2</mu2> -->
+  </gazebo>
 
   <!-- =========== ROS2 Control ============ --> 
+  <!--
   <ros2_control name="RobotinoSystem" type="system">
 
     <hardware>
@@ -181,7 +204,6 @@
 
       <state_interface name="position"/>
       <state_interface name="velocity"/>
-      <!-- <state_interface name="effort"/> --> 
       
     </joint>
 
@@ -194,7 +216,6 @@
 
       <state_interface name="position"/>
       <state_interface name="velocity"/>
-     <!--  <state_interface name="effort"/> --> 
       
     </joint>
 
@@ -207,17 +228,31 @@
 
       <state_interface name="position"/>
       <state_interface name="velocity"/>
-     <!--  <state_interface name="effort"/>--> 
       
     </joint>
-
   </ros2_control>
+  --> 
 
   <!-- Gazebo's ros2_control plugin -->
+  <!-- 
   <gazebo>
     <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <robot_param>robot_description</robot_param>
+      <robot_param_node>robot_state_publisher</robot_param_node>
       <parameters>$(find robotino_bringup)/config/controller_configuration.yaml</parameters>
     </plugin>
+
+    <plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d" >
+      <ros>
+          <namespace>gazebo_ground_truth</namespace>
+      </ros>
+      <frame_name>world</frame_name>
+      <body_name>base_footprint</body_name>
+      <update_rate>50.0</update_rate>
+      <gaussian_noise>0.01</gaussian_noise>
+  </plugin>
+
   </gazebo>
-  
+  -->
+
 </robot>
