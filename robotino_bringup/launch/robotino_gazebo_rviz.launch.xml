@@ -1,11 +1,9 @@
 <launch>
     <let name="urdf_path" 
-        value="$(find-pkg-share robotino_description)/urdf/robotino.urdf" />
+        value="$(find-pkg-share robotino_description)/urdf/robotino.urdf.xacro" />
 
     <let name="rviz_config" 
         value="$(find-pkg-share robotino_bringup)/rviz/urdf_config.rviz" />
-    
-    <!-- <set_env name="GAZEBO_MODEL_PATH" value="$(find-pkg-prefix robotino_description)/share" /> -->
 
     <node pkg="robot_state_publisher" exec="robot_state_publisher">
         <param name="robot_description"

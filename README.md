@@ -5,21 +5,26 @@ This repository contains three ROS 2 packages related to the Robotino robot.
 ## Included Packages:
 
 ### 1. robotino_bringup 
-This package contains a launch file to spawn the Robotino robot in Gazebo with ros_planar_move plugin and visualize it in RViz.
+
+This package contains two launch files to spawn the Robotino robot in Gazebo with ros_planar_move plugin and visualize it in RViz. One of this launch file is for spawn the robot in an empty Gazebo world. An the other one spwan the robot in a turtlebot3 world.
 
 #### Usage Instructions:
 
-To launch the robot in Gazebo and visualize it in RViz, execute the following command:
+To launch the robot in a empty Gazebo world and visualize it in RViz, execute one of the two following commands:
 
 ```bash
 ros2 launch robotino_bringup robotino_gazebo.launch.xml
 ```
 
-To launch robotino in Gazebo with ros_planar_move plugin:
-
 ```bash
 ros2 launch robotino_bringup robotino_gazebo.launch.py
 ```
+
+To launch the robot in a Gazebo world and visualize it in RViz:
+
+```bash
+ros2 launch robotino_bringup robotino_gazebo.launch.py
+``` 
 
 To control the robot's wheels:
 
@@ -84,7 +89,10 @@ export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/robotino4-ros2/src/
 source ~/robotino4-ros2/install/setup.bash
 ```
 
+In the .gazebo/models folder, it's necessary to include the turtlebot3_world folder in order to launch the robotino_world.xml.
+
 ## TODO:
 
+- [X] Organize the URDF file (reintroduce xacros and separate the code as in the course).
 - [ ] Modify the launch file or the URDF file so that the robot meshes are exported correctly to Gazebo without needing to include the export GAZEBO_PATH in the bash file.
-- [ ] Organize the URDF file (reintroduce xacros and separate the code as in the course).
+- [ ] Find a way to place the meshes that the world uses without having to put them in the .gazebo folder.

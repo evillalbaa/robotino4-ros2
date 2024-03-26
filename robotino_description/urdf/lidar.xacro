@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    
+    <xacro:property name="lidar_base_side" value="0.05" />
+    <xacro:property name="lidar_base_height" value="0.041" />
+    <xacro:property name="lidar_radius" value="0.021" />
+    <xacro:property name="lidar_length" value="0.029" />
+
+    
+    <!-- ***************************** Lidar Base ******************************* -->
+    <link name="base_lidar_link">
+
+        <visual>
+            <geometry>
+                <box size="${lidar_base_side} ${lidar_base_side} ${lidar_base_height}" />
+            </geometry>
+            <origin xyz="0.025 0 ${lidar_base_height / 2}" rpy="0 0 0"/>
+            <material name="black" />
+        </visual>
+
+        <collision>
+            <geometry>
+                <box size="${lidar_base_side} ${lidar_base_side} ${lidar_base_height}" />
+            </geometry>
+            <origin xyz="0.025 0 ${lidar_base_height / 2}" rpy="0 0 0"/>
+          </collision>
+    
+    </link>
+
+    <joint name="platform_base_lidar_joint" type="fixed">
+        <parent link="platform_link" />
+        <child link="base_lidar_link" />
+        <origin xyz="0.025 0 0.02" rpy="0 0 0"/>
+    </joint>
+    <!-- ************************************************************************ -->
+
+    <!-- ******************************** Lidar ********************************* -->
+    <link name="lidar_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}" />
+            </geometry>
+            <origin xyz="0 0 ${lidar_length / 2}" rpy="0 0 0"/>
+            <material name="grey" />
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}" />
+            </geometry>
+            <origin xyz="0 0 ${lidar_length / 2}" rpy="0 0 0"/>
+          </collision>
+
+    </link>
+
+    <joint name="base_lidar_joint" type="fixed">
+        <parent link="base_lidar_link" />
+        <child link="lidar_link" />
+        <origin xyz="0.025 0 ${lidar_base_height}" rpy="0 0 0"/>
+    </joint>
+    <!-- ************************************************************************ -->
+
+    <!-- ******************************** Gazebo ******************************** -->
+    <gazebo reference="base_lidar_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="lidar_link">
+        <material>Gazebo/Grey</material>
+        <sensor name="laser" type="ray">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>40</update_rate>
+            <ray> 
+                <scan>
+                    <horizontal>
+                        <samples>686</samples>
+                        <min_angle>-2.094395102</min_angle>
+                        <max_angle>2.094395102</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.1</min>
+                    <max>4</max>
+                    <resolution>0.001</resolution>
+                </range>
+            </ray>
+
+            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+                <!-- 
+                <ros>
+                    <argument>~/out:=scan</argument>
+                </ros>
+                -->
+                <output_type>sensor_msgs/LaserScan</output_type>
+                <frame_name>lidar_link</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
+    <!-- ************************************************************************ -->
+</robot>

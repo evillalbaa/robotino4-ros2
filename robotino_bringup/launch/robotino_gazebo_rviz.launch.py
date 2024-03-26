@@ -1,10 +1,8 @@
 import os
-
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler
-from launch.event_handlers import OnProcessExit
+from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 import xacro
 
@@ -16,11 +14,9 @@ def generate_launch_description():
 
     xacro_file = os.path.join(robotino_description_path,
                               'urdf',
-                              'robotino.urdf')
+                              'robotino.urdf.xacro')
 
-    doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc)
-    robot_description_config = doc.toxml()
+    robot_description_config = xacro.process_file(xacro_file).toxml()
     robot_description = {'robot_description': robot_description_config}
 
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
@@ -46,21 +42,6 @@ def generate_launch_description():
                                    '-entity', 'robot'],
                         output='screen')
 
-    '''
-    joint_state_broadcaster_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        output="screen",
-        arguments=["joint_state_broadcaster"],
-    )
-
-    robot_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        output="screen",
-        arguments=["omnidirectional_controller"],
-    )
-    '''
     rviz2_node = Node(
         package="rviz2",
         executable="rviz2",
@@ -69,8 +50,6 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        # joint_state_broadcaster_spawner,
-        # robot_controller_spawner,
         gazebo,
         spawn_entity,
         node_robot_state_publisher,

@@ -1,0 +1,22 @@
+<launch>
+    <let name="urdf_path" 
+        value="$(find-pkg-share robotino_description)/urdf/robotino.urdf.xacro" />
+
+    <let name="rviz_config" 
+        value="$(find-pkg-share robotino_bringup)/rviz/urdf_config.rviz" />
+
+    <node pkg="robot_state_publisher" exec="robot_state_publisher">
+        <param name="robot_description"
+                value="$(command 'xacro $(var urdf_path)')" />
+    </node>
+
+    <include file="$(find-pkg-share gazebo_ros)/launch/gazebo.launch.py" >
+        <arg name="world" value="$(find-pkg-share robotino_bringup)/worlds/turtlebot3_world.world" />
+    </include>
+
+    <node pkg="gazebo_ros" exec="spawn_entity.py" output="screen"
+          args="-topic /robot_description -entity robotino -x -2.0 -y -0.5" />
+
+    <node pkg="rviz2" exec="rviz2" output="screen"
+          args="-d $(var rviz_config)" />
+</launch>

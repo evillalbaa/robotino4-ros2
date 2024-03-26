@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <gazebo reference="wheel0_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    
+    <gazebo reference="wheel1_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    
+    <gazebo reference="wheel2_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+    
+    <gazebo reference="platform_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+
+    <!-- ************************* Planar Move Plugin *************************** -->
+    <gazebo>
+        <plugin name="gazebo_ros_planar_move" filename="libgazebo_ros_planar_move.so">
+
+            <ros>
+            <remapping>cmd_vel:=cmd_vel</remapping>
+            <remapping>odom:=odom</remapping>
+            </ros>
+
+            <update_rate>100</update_rate>
+            <publish_rate>10</publish_rate>
+
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+
+            <odometry_frame>odom_demo</odometry_frame>
+            <robot_base_frame>base_footprint</robot_base_frame>
+
+        </plugin>
+    </gazebo>
+    <!-- ************************************************************************ -->
+ 
+</robot>
