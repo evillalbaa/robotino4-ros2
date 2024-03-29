@@ -94,5 +94,7 @@ In the .gazebo/models folder, it's necessary to include the turtlebot3_world fol
 ## TODO:
 
 - [X] Organize the URDF file (reintroduce xacros and separate the code as in the course).
+- [ ] Inside the cartographer_slam include the map_server to check if the map is correct. 
+- [ ] In the new packages(cartographer, localization and map) introduced in launch file the rviz and the launch tha spawn robotino in a turtlebot Gazebo world.
 - [ ] Modify the launch file or the URDF file so that the robot meshes are exported correctly to Gazebo without needing to include the export GAZEBO_PATH in the bash file.
 - [ ] Find a way to place the meshes that the world uses without having to put them in the .gazebo folder.
