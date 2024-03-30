@@ -38,7 +38,7 @@ def generate_launch_description():
 
 
     return LaunchDescription([
-        #rviz2_node,
+        rviz2_node,
         map_server_node,
         lifecycle_manager_node,
        
