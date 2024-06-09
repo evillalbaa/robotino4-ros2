@@ -1,6 +1,6 @@
 # robotino4-ros2
 
-This repository contains three ROS 7 packages related to the Robotino robot.
+This repository contains six ROS  packages related to the Robotino robot.
 
 ## Included Packages:
 
@@ -25,17 +25,17 @@ This package contains two launch files to spawn the Robotino robot in Gazebo wit
 To launch the robot in a empty Gazebo world and visualize it in RViz, execute one of the two following commands:
 
 ```bash
-ros2 launch robotino_bringup robotino_gazebo.launch.xml
+rros2 launch robotino_bringup robotino_gazebo_rviz.launch.xml
 ```
 
 ```bash
-ros2 launch robotino_bringup robotino_gazebo.launch.py
+ros2 launch robotino_bringup robotino_gazebo_rviz.launch.py
 ```
 
 To launch the robot in a Gazebo world and visualize it in RViz:
 
 ```bash
-ros2 launch robotino_bringup robotino_world.launch.py
+ros2 launch robotino_bringup robotino_world.xml
 ``` 
 
 To control the robot's wheels:
@@ -59,12 +59,13 @@ ros2 launch cartographer_slam cartographer.launch.py
 To create the map, move the robot around until the map appears correctly in RViz. To control the robot's movement, use the following command in a separate terminal:
 
 ```bash
-ros2 run teleop_twist_keyboard teleop_twist_keyboardy
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ``` 
 
 Once the map is satisfactorily generated, execute the following command to save it:
 
 ```bash
+cd ~/robotino4-ros2/src/cartographer_slam/config
 ros2 run nav2_map_server map_saver_cli -f turtlebot_area
 ``` 
 
@@ -88,7 +89,7 @@ The **localization_server** packages is designed to localize the robot, providin
 Executed the following commands:
 
 ```bash
-ros2 launch robotino_bringup robotino_world.launch.py
+ros2 launch robotino_bringup robotino_world.xml
 ``` 
 
 ```bash
@@ -103,7 +104,7 @@ In RViz, save the initial pose using the "2D Estimate Pose" tool located in the 
 
 ### 5. path_planner
 
-The **path_planner** packages move the robot from Point A to Point B, avoiding the obstacles along the map we have generated. It leverages the Distrak algorithm for path planning. 
+The **path_planner** packages move the robot from Point A to Point B, avoiding the obstacles along the map we have generated. It leverages the Dijkstra algorithm for path planning. 
 
 #### Usage Instructions:
 
@@ -112,13 +113,13 @@ Executed the following commands:
 1. Launch the robot simulation environment using:
 
 ```bash
-ros2 launch robotino_bringup robotino_world.launch.py
+ros2 launch robotino_bringup robotino_world.xml
 ``` 
 
 2. Open RViz for visualization:
 
 ```bash
-ros2 rviz2
+rviz2
 ``` 
 
 3. Start the localization server:
