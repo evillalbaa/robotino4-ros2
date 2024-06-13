@@ -25,6 +25,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            "multi_goal_nav = path_planner_server.multi_goal_nav:main"
         ],
     },
 )
