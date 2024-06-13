@@ -1,7 +1,33 @@
 # robotino4-ros2
+This repository contains several ROS 2 packages designed to work with the Robotino 4 robot. It provides a variety of functionalities ranging from describing the robot in URDF to control and path planning, as well as map creation and environment localization. Additionally, it includes nodes for interacting with the real robot via a REST API.
 
-This repository contains six ROS  packages related to the Robotino robot.
+## Instalation of Required Resources:
+To install the necessary resources for working with this repository and the omni-roobot-gui repository, follow these steps:
 
+1. **Download the install_resources.sh Script:**
+
+   You can do this using wget
+
+   ```bash
+   wget https://github.com/evillalbaa/robotino4-ros2/raw/main/install_resources.sh
+   ```
+
+2. **Grand Execution Permissions:**
+   
+   Before executing the script, you need to grant execution permissions.
+
+   ```bash
+   chmod +x install_resources.sh
+   ```
+
+3. **Execute the script:**
+   
+   Run the script to automate the installation process. This script handles downloading the repository, creating the ROS workspace, and installing necessary programs and packages.
+
+   ```bash
+   ./install_resources.sh
+   ```
+   
 ## Included Packages:
 
 ### 1. robotino_description
@@ -169,25 +195,3 @@ To send velocity commands to the robotino via the "cmd_vel" topic, use the follo
 ```bash
 ros2 topic pub /cmd_vel geometry_msgs/msg/Twist '{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}' -r 10
 ```
-
-## Setting up Environment
-
-To ensure everything functions correctly, add the following lines to your .bashrc file:
-
-```bash
-source /opt/ros/humble/setup.bash
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-source /usr/share/gazebo/setup.bash
-export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/robotino4-ros2/src/
-source ~/robotino4-ros2/install/setup.bash
-```
-
-In the .gazebo/models folder, it's necessary to include the turtlebot3_world folder in order to launch the robotino_world.xml.
-
-## TODO:
-
-- [X] Organize the URDF file (reintroduce xacros and separate the code as in the course).
-- [ ] Inside the cartographer_slam include the map_server to check if the map is correct. 
-- [ ] In the new packages(cartographer, localization and map) introduced in launch file the rviz and the launch tha spawn robotino in a turtlebot Gazebo world.
-- [ ] Modify the launch file or the URDF file so that the robot meshes are exported correctly to Gazebo without needing to include the export GAZEBO_PATH in the bash file.
-- [ ] Find a way to place the meshes that the world uses without having to put them in the .gazebo folder.
