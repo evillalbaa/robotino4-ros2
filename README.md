@@ -138,27 +138,27 @@ The **path_planner** packages move the robot from Point A to Point B, avoiding t
 
 Executed the following commands:
 
-1. Launch the robot simulation environment using:
-
-```bash
-ros2 launch robotino_bringup robotino_world.xml
-``` 
-
-2. Start the localization server:
+1. Start the localization server:
 
 ```bash
 ros2 launch localization_server localization.launch.py
 ``` 
 
-In RViz, save the initial pose using the "2D Estimate Pose" tool located in the toolbar above.
+2. Launch the robot simulation environment using:
 
-3. Launch the path planner server:
+```bash
+ros2 launch robotino_bringup robotino_world.xml
+``` 
+
+4. In RViz, save the initial pose using the "2D Estimate Pose" tool located in the toolbar above.
+
+5. Launch the path planner server:
 
 ```bash
 ros2 launch path_planner_server pathplanner.launch.py
 ``` 
 
-In RViz, put a gol pose with "2D Goal Pose" tool locatedd in the toolbar above. 
+6. In RViz, put a gol pose with "2D Goal Pose" tool locatedd in the toolbar above. 
 
 ### 6. robotino_rest_node
 
