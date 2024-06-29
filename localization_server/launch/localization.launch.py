@@ -8,8 +8,17 @@ def generate_launch_description():
     
     nav2_yaml = os.path.join(get_package_share_directory('localization_server'), 'config', 'amcl_config.yaml')
     map_file = os.path.join(get_package_share_directory('map_server'), 'config', 'turtlebot_area.yaml')
+    rviz_config_path = os.path.join(get_package_share_directory('localization_server'),
+                             'rviz', 'localizer_rviz_config.rviz')
 
     return LaunchDescription([
+
+        Node(
+            package="rviz2",
+            executable="rviz2",
+            arguments=['-d', rviz_config_path]
+        ),
+
         Node(
             package='nav2_map_server',
             executable='map_server',

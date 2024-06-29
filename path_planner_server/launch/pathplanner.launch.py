@@ -9,9 +9,12 @@ def generate_launch_description():
     bt_navigator_yaml = os.path.join(get_package_share_directory('path_planner_server'), 'config', 'bt_navigator.yaml')
     planner_yaml = os.path.join(get_package_share_directory('path_planner_server'), 'config', 'planner_server.yaml')
     recovery_yaml = os.path.join(get_package_share_directory('path_planner_server'), 'config', 'recovery.yaml')
+    rviz_config_path = os.path.join(get_package_share_directory('path_planner_server'),
+                             'rviz', 'path_planner_config.rviz')
 
     
-    return LaunchDescription([     
+    return LaunchDescription([    
+
         Node(
             package='nav2_controller',
             executable='controller_server',
