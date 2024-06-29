@@ -150,15 +150,15 @@ ros2 launch localization_server localization.launch.py
 ros2 launch robotino_bringup robotino_world.xml
 ``` 
 
-4. In RViz, save the initial pose using the "2D Estimate Pose" tool located in the toolbar above.
+3. In RViz, save the initial pose using the "2D Estimate Pose" tool located in the toolbar above.
 
-5. Launch the path planner server:
+4. Launch the path planner server:
 
 ```bash
 ros2 launch path_planner_server pathplanner.launch.py
 ``` 
 
-6. In RViz, put a gol pose with "2D Goal Pose" tool locatedd in the toolbar above. 
+5. In RViz, put a gol pose with "2D Goal Pose" tool locatedd in the toolbar above. 
 
 ### 6. robotino_rest_node
 
