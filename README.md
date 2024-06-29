@@ -51,7 +51,7 @@ This package contains two launch files to spawn the Robotino robot in Gazebo wit
 To launch the robot in a empty Gazebo world and visualize it in RViz, execute one of the two following commands:
 
 ```bash
-rros2 launch robotino_bringup robotino_gazebo_rviz.launch.xml
+ros2 launch robotino_bringup robotino_gazebo_rviz.launch.xml
 ```
 
 ```bash
@@ -103,7 +103,7 @@ The saving command will generate two files:
 To verify the successful generation of the map, launch the map server using
 
 ```bash
-ros2 launch nav_map_server.launch.py
+ros2 launch map_server nav2_map_server.launch.py
 ``` 
 
 ### 4. localization_server
