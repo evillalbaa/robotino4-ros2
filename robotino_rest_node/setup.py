@@ -21,7 +21,10 @@ setup(
     entry_points={
         'console_scripts': [
             "robotino_omnidrive = robotino_rest_node.omnidrive:main",
-            "robotino_bumper = robotino_rest_node.bumper:main"
+            "robotino_bumper = robotino_rest_node.bumper:main",
+            "robotino_odom= robotino_rest_node.odom:main",
+            "robotino_laser = robotino_rest_node.laser:main"
+
         ],
     },
 )

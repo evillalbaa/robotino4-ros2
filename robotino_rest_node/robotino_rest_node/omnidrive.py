@@ -17,7 +17,7 @@ class OmnidriveNode(Node):
 
     def lisener_callback(self, msg: Twist):
         self.get_logger().info('Received Twist: %f %f %f' % (msg.linear.x, msg.linear.y, msg.angular.z))
-        pdata = {'vx': msg.linear.x, 'vy': msg.linear.y, 'omega': msg.angular.z}
+        pdata = [msg.linear.x, msg.linear.y, msg.angular.z]
         self.post_data(pdata)
         
     def post_data(self, pdata):

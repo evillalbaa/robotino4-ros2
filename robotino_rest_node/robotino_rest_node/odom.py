@@ -44,8 +44,8 @@ class OdometryNode(Node):
         pose = Pose()
         pose.position = Point(data[0], data[1], 0.0)
         quat = quaternion_from_euler(0.0, 0.0, data[2])
-        pose.orientation = Quaternion(*quat)
-        odom_msg.pose.pose = pose
+        #pose.orientation = Quaternion(*quat)
+        #odom_msg.pose.pose = pose
         
         # Twist
         twist = Twist()
