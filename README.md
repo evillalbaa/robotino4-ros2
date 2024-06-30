@@ -182,6 +182,18 @@ To subscribe to the "bumper" topic and view bumper data, use the following comma
 ros2 topic echo bumper
 ```
 
+To run the `robotino_laser` node, use the following command:
+
+```bash
+ros2 run robotino_rest_node robotino_laser
+```
+
+To run the `robotino_odom` node, use the following command:
+
+```bash
+ros2 run robotino_rest_node robotino_odom
+```
+
 To run the `robotino_omnidrive` node, use the following command:
 ```bash
 ros2 run robotino_rest_node robotino_omnidrive
@@ -189,5 +201,5 @@ ros2 run robotino_rest_node robotino_omnidrive
 
 To send velocity commands to the robotino via the "cmd_vel" topic, use the following command:
 ```bash
-ros2 topic pub /cmd_vel geometry_msgs/msg/Twist '{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}' -r 10
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
